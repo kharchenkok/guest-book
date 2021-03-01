@@ -1,14 +1,16 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import TextField from "@material-ui/core/TextField";
 import SendIcon from "@material-ui/icons/Send";
 import { Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { purple } from "@material-ui/core/colors";
 
-import { v4 as uuidv4 } from "uuid";
-
-import { addMessageOperation,getMessagesOperation } from "../../redux/operations/messageOperations";
+import {
+  addMessageOperation,
+  getMessagesOperation,
+} from "../../redux/operations/messageOperations";
 import EmptyNameAlert from "../alert/EmptyNameAlert";
 
 const useStyles = makeStyles((theme) => ({
@@ -22,6 +24,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const ColorButton = withStyles((theme) => ({
+  root: {
+    color: theme.palette.getContrastText(purple[500]),
+    backgroundColor: purple[500],
+    "&:hover": {
+      backgroundColor: purple[700],
+    },
+  },
+}))(Button);
+
 const initialState = {
   name: "",
   message: "",
@@ -30,13 +42,13 @@ const initialState = {
 const MessageForm = () => {
   const [formMessage, setFormMessage] = useState(initialState);
   const [alertEmpty, setAlertEmpty] = useState(false);
- 
-    const dispatch = useDispatch();
-  
-    useEffect(() => {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
     const getLocalStorageData = localStorage.getItem("message");
-        getLocalStorageData && setFormMessage(JSON.parse(getLocalStorageData));
-        dispatch(getMessagesOperation());
+    getLocalStorageData && setFormMessage(JSON.parse(getLocalStorageData));
+    dispatch(getMessagesOperation());
   }, [dispatch]);
 
   useEffect(() => {
@@ -58,7 +70,6 @@ const MessageForm = () => {
       name: name,
       message: message,
       date: currentDate,
-      id: uuidv4(),
     };
 
     dispatch(addMessageOperation(newMessage));
@@ -80,12 +91,12 @@ const MessageForm = () => {
 
       <form
         className={classes.root}
-         noValidate
+        noValidate
         autoComplete="off"
         onSubmit={handleFormSubmit}
       >
         <TextField
-           id="outlined-basic"
+          id="outlined-basic"
           label="Name"
           name="name"
           variant="outlined"
@@ -106,15 +117,15 @@ const MessageForm = () => {
           onChange={handleChange}
         />
 
-        <Button
+        <ColorButton
           variant="contained"
-          color="default"
+          color="primary"
           size="large"
           endIcon={<SendIcon />}
           type="submit"
         >
           Send your message
-        </Button>
+        </ColorButton>
       </form>
     </>
   );

@@ -13,31 +13,37 @@
   padding: 0;
 }
 .messagelist__style {
-  line-height: 2;
+  line-height: normal;
   margin: 0;
-  font-weight: 600;
+  font-weight: 400;
   font-style: italic;
 }
 .messagelist__style:not(:last-child) {
   margin-right: 10px;
 }
 
-.messagelist__messsage {
-  max-width: 250px;
-}
 .messagelist__name {
-  width: 80px;
+  color: darkslateblue;
+  font-weight: 700;
+}
+.messagelist__date {
+  color: gray;
 }
 
 .messagelist__item {
   font-size: 15px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   margin-bottom: 5px;
-  border-bottom: 2px groove rgb(177, 169, 169);
-  padding-bottom: 5px;
+  border: 1px groove rgb(199, 195, 195);
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 255, 0.2);
+  padding: 5px;
   width: 100%;
   justify-content: space-between;
+}
+.messagelist__item:hover {
+  background-color: rgb(226, 222, 222);
 }
 
 .enter {
