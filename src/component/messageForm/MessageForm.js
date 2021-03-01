@@ -62,7 +62,7 @@ const MessageForm = () => {
 
     if (name.length === 0 || message.length === 0) {
       setAlertEmpty(true);
-      setTimeout(() => setAlertEmpty(false), 1500);
+      setTimeout(() => setAlertEmpty(false), 1000);
       return;
     }
     const currentDate = new Date().toLocaleString();

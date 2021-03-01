@@ -3,8 +3,7 @@ import { resetError, setError } from '../slice/errorSlice';
 import { loaderOff, loaderOn } from '../slice/loaderSlice';
 
 import { addMessage,setMessages} from '../slice/messagesSlice'
-// import {setError,resetError} from "../action/errorActions"
-// import { loaderOff, loaderOn } from '../action/loaderActions'
+
 
 axios.defaults.baseURL = 'http://localhost:2000';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
